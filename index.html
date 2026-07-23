@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 60px;
+            background: #f4f4f4;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Where is she?</h2>
+
+    <input type="date" id="dateInput">
+
+    <br>
+
+    <button onclick="checkHouse()">Check</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function checkHouse() {
+    const input = document.getElementById("dateInput").value;
+
+    if (!input) {
+        document.getElementById("result").innerHTML = "Please select a date.";
+        return;
+    }
+
+    const reference = new Date("2026-07-24");
+    const selected = new Date(input);
+
+    const msPerWeek = 7 * 24 * 60 * 60 * 1000;
+    const weeks = Math.floor((selected - reference) / msPerWeek);
+
+    if (weeks % 2 === 0) {
+        document.getElementById("result").innerHTML =
+            "🏠 She's at her Dad's house.";
+    } else {
+        document.getElementById("result").innerHTML =
+            "🏡 She's at her Mom's house.";
+    }
+}
+</script>
+
+</body>
+</html>
